@@ -97,6 +97,11 @@ namespace Transit.Addon.RoadExtensions.Roads.Common
                 props.Add(propToAdd.ShallowClone());
             }
         }
+        public static void AddProp(this ICollection<NetLaneProps.Prop> props, NetLaneProps.Prop propToAdd)
+        {
+            props.Add(propToAdd.ShallowClone());
+        }
+
         /// <summary>
         /// Replaces a prop whose name is contained in the key with the propinfo in the value.
         /// </summary>
@@ -197,6 +202,85 @@ namespace Transit.Addon.RoadExtensions.Roads.Common
 
                 laneProps.m_props = remainingProp.ToArray();
             }
+        }
+
+        public static void SetBikeLaneProps(this NetInfo.Lane lane)
+        {
+            var prop = Prefabs.Find<PropInfo>("BikeLaneText", false);
+
+            if (prop == null)
+            {
+                return;
+            }
+
+            if (lane.m_laneProps == null)
+            {
+                lane.m_laneProps = ScriptableObject.CreateInstance<NetLaneProps>();
+                lane.m_laneProps.m_props = new NetLaneProps.Prop[] { };
+            }
+            else
+            {
+                lane.m_laneProps = lane.m_laneProps.Clone();
+            }
+
+            var tempProps = lane.m_laneProps.m_props.ToList();
+            tempProps.RemoveProps("arrow");
+            lane.m_laneProps.m_props = tempProps.ToArray();
+
+
+            lane.m_laneProps.m_props = lane
+                .m_laneProps
+                .m_props
+                    .Union(new NetLaneProps.Prop
+                    {
+                        m_prop = prop,
+                        m_position = new Vector3(0f, 0f, 7.5f),
+                        m_angle = 180f,
+                        m_segmentOffset = -1f,
+                        m_minLength = 8f,
+                        m_startFlagsRequired = NetNode.Flags.Junction
+                    })
+                .ToArray();
+        }
+
+        public static void SetSharedLaneProps(this NetInfo.Lane lane)
+        {
+
+            var prop = Prefabs.Find<PropInfo>("SharedLaneText", false);
+
+            if (prop == null)
+            {
+                return;
+            }
+
+            if (lane.m_laneProps == null)
+            {
+                lane.m_laneProps = ScriptableObject.CreateInstance<NetLaneProps>();
+                lane.m_laneProps.m_props = new NetLaneProps.Prop[] { };
+            }
+            else
+            {
+                lane.m_laneProps = lane.m_laneProps.Clone();
+            }
+
+            var tempProps = lane.m_laneProps.m_props.ToList();
+            tempProps.RemoveProps("arrow");
+            lane.m_laneProps.m_props = tempProps.ToArray();
+
+
+            lane.m_laneProps.m_props = lane
+                .m_laneProps
+                .m_props
+                    .Union(new NetLaneProps.Prop
+                    {
+                        m_prop = prop,
+                        m_position = new Vector3(0f, 0f, 7.5f),
+                        m_angle = 180f,
+                        m_segmentOffset = -1f,
+                        m_minLength = 8f,
+                        m_startFlagsRequired = NetNode.Flags.Junction
+                    })
+                .ToArray();
         }
     }
 }

@@ -18,6 +18,12 @@ namespace Transit.Framework
         GroundTrees = 32,
         AllWithDecoration = 63,
     }
+    public enum SpecailSegments
+    {
+        EndNode = 0,
+        BusStation = 2,
+        None = 4
+    }
 
     public static class NetInfoVersionExtensions
     {

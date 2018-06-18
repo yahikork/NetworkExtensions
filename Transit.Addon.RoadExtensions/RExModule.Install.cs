@@ -10,6 +10,9 @@ using Transit.Addon.RoadExtensions.Menus.Roads.Textures;
 using Transit.Addon.RoadExtensions.Roads.TinyRoads.Alley2L;
 using Transit.Addon.RoadExtensions.Roads.TinyRoads.Oneway1L;
 using Transit.Addon.RoadExtensions.Roads.TinyRoads.Oneway1LParking;
+using Transit.Addon.RoadExtensions.Roads.TinyRoads.Oneway2L;
+using Transit.Addon.RoadExtensions.Roads.TinyRoads.Oneway1LParkingBicycle;
+using Transit.Addon.RoadExtensions.Roads.TinyRoads.Oneway1LBicycle;
 using Transit.Framework;
 using Transit.Framework.Builders;
 using Transit.Framework.ExtensionPoints.AI;
@@ -19,6 +22,8 @@ using ZonablePedestrianTinyGravelRoadBuilder = Transit.Addon.RoadExtensions.Road
 using ZonablePedestrianTinyPavedRoadBuilder = Transit.Addon.RoadExtensions.Roads.PedestrianRoads.PavementTiny.ZonablePedestrianTinyPavedRoadBuilder;
 using ZonablePedestrianTinyStoneRoadBuilder = Transit.Addon.RoadExtensions.Roads.PedestrianRoads.StoneTiny.ZonablePedestrianTinyStoneRoadBuilder;
 using ZonablePedestrianTinyBoardwalkBuilder = Transit.Addon.RoadExtensions.Roads.PedestrianRoads.BoardwalkTiny.ZonablePedestrianBoardwalkRoadBuilder;
+using Transit.Addon.RoadExtensions.Roads.SmallHeavyRoads.OneWay3L;
+
 namespace Transit.Addon.RoadExtensions
 {
     public partial class RExModule
@@ -70,6 +75,9 @@ namespace Transit.Addon.RoadExtensions
                 Alley2LBuilder.NAME,
                 Oneway1LBuilder.NAME,
                 Oneway1LParkingBuilder.NAME,
+                Oneway2LBuilder.NAME,
+                Oneway1LBicycleBuilder.NAME,
+                Oneway1LParkingBicycleBuilder.NAME,
                 ZonablePedestrianTinyGravelRoadBuilder.NAME,
                 ZonablePedestrianTinyPavedRoadBuilder.NAME,
                 ZonablePedestrianTinyStoneRoadBuilder.NAME,
